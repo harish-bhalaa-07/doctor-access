@@ -17,6 +17,7 @@ connectDB();
 
 // Set view engine
 app.set('view engine', 'ejs');
+app.set('views', '/var/task/views');
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // Load assets
