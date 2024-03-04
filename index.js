@@ -1,12 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
-const multer = require('multer'); // Import multer for file uploads
-
+const multer = require('multer');
 const connectDB = require('./server/database/connection');
 
 const app = express();
-
 const PORT = 7000;
 
 // Log requests
@@ -15,12 +13,16 @@ app.use(morgan('tiny'));
 // MongoDB connection
 connectDB();
 
+// Log __dirname and views directory
+console.log('__dirname:', __dirname);
+console.log('Views directory:', path.join(__dirname, 'views'));
+
 // Set view engine
 app.set('view engine', 'ejs');
-app.set('views', '/var/task/views');
+app.set('views', path.join(__dirname, 'views'));
 
+// Serve static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-// Load assets
 app.use('/css', express.static(path.resolve(__dirname, 'assets/css')));
 app.use('/img', express.static(path.resolve(__dirname, 'assets/img')));
 app.use('/js', express.static(path.resolve(__dirname, 'assets/js')));
