@@ -13,13 +13,9 @@ app.use(morgan('tiny'));
 // MongoDB connection
 connectDB();
 
-// Log __dirname and views directory
-console.log('__dirname:', __dirname);
-console.log('Views directory:', path.join(__dirname, 'views'));
-
 // Set view engine
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', '/var/task/views');
 
 // Serve static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
